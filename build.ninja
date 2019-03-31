@@ -1,0 +1,8 @@
+cc = g++
+cxxflags = -Wall -Wextra -std=c++17 -DNDEBUG -O3 -flto
+linkflags = -flto -fuse-ld=gold -Wl,--gc-sections -Wl,--strip-all
+
+rule cc
+  command = $cc $cxxflags $linkflags $in -o $out
+
+build waiting_for_reading: cc waiting_for_reading.cpp
